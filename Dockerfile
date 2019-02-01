@@ -1,13 +1,8 @@
-FROM ubuntu:16.04
+FROM grpc/cxx:latest
 
-RUN apt-get -y update && \
-    apt-get -y install autoconf build-essential gcc git libtool libgflags-dev
+RUN apt-get update && apt-get install -y libgflags-dev libgoogle-glog-dev liblmdb-dev
 
-RUN git clone --recursive https://github.com/grpc/grpc.git
+RUN cd /var/local/git/grpc && make grpc_cli
 
-WORKDIR grpc
-RUN git checkout v1.7.2
-
-RUN make grpc_cli
-
-ENTRYPOINT ["./bins/opt/grpc_cli"]
+WORKDIR /var/local/git/grpc/bins/opt
+ENTRYPOINT ["./grpc_cli"]

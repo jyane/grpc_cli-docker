@@ -5,8 +5,8 @@ grpc_cli is a [gRPC Comman Line Tool](https://github.com/grpc/grpc/blob/v1.7.2/d
 ## Usage
 
 ``` sh
-docker build .
-docker run $@
+docker build . -t grpc_cli
+docker run grpc_cli
 ```
 
 
